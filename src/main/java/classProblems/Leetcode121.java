@@ -1,31 +1,21 @@
-package leetcode150;
+package classProblems;
 
-public class Problem121 {
+public class Leetcode121 {
 
-    public static void main(String[] args) {
-        Problem121 problem121 = new Problem121();
-        int[] prices = {7, 1, 5, 3, 6, 4};
-        System.out.println(problem121.maxProfit(prices));
-    }
-
-
-//    -----------------BETTER APPROACH ---------------
     public int maxProfit(int[] prices) {
-        int buyPrice = prices[0];
-        int profit = 0;
-
-        for (int i = 1; i < prices.length; i++) {
-            if (buyPrice > prices[i]) {
-                buyPrice = prices[i];
+        int minPrice = Integer.MAX_VALUE;
+        int maxProfit = 0;
+        for (int i = 0; i < prices.length - 1; i++) {
+            if (prices[i] < minPrice) {
+                minPrice = prices[i];
             }
-
-            profit = Math.max(profit, prices[i] - buyPrice);
+            maxProfit = Math.max(maxProfit, prices[i] - minPrice);
         }
-
-        return profit;
+        return maxProfit;
     }
 
-    public int maxProfit2(int[] prices) {
+
+    public int maxProfit1(int[] prices) {
         int[] left = new int[prices.length];
         int[] right = new int[prices.length];
         left[0] = prices[0];
