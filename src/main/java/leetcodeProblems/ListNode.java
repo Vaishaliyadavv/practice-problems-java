@@ -1,14 +1,14 @@
 package leetcodeProblems;
 
 //https://leetcode.com/problems/remove-nth-node-from-end-of-list/submissions/1196623028/
-class ListNode {
-    int val;
-    ListNode next;
+public class ListNode {
+    public int val;
+    public ListNode next;
 
     ListNode() {
     }
 
-    ListNode(int val) {
+    public ListNode(int val) {
         this.val = val;
     }
 
