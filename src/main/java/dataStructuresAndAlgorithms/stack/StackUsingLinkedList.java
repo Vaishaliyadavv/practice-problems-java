@@ -2,60 +2,46 @@ package dataStructuresAndAlgorithms.stack;
 
 import dataStructuresAndAlgorithms.linkedList.Node;
 
+//TC = O(1) FOR ALL
+//SC = O(N) FOR N ELEMENTS
+
+
 public class StackUsingLinkedList {
-   static Node top;
-   static int size ;
-   public StackUsingLinkedList(){
-       top = null;
-       size = 0;
-   }
+    int size;
+    Node top;
 
-   public static boolean isEmpty(){
-       return top == null;
-   }
+    public StackUsingLinkedList(){
+        size = 0;
+        top = null;
+    }
 
-   public static void push(int data){
-       Node newNode = new Node(data);
-       newNode.next = top;
-       top = newNode;
-       size++;
-   }
+    public void push(int value){
+        Node newNode = new Node(value);
+        newNode.next = top;
+        top = newNode;
+        size++;
+    }
 
-   public static int peek(){
-       if(!isEmpty()){
-           return top.data;
-       }
-       System.out.println("stack is empty");
-       return Integer.MAX_VALUE;
-   }
+    public int pop(){
+        if(top == null){
+            System.out.println("Stack is empty");
+            return 0;
+        }
+        int ele = top.data;
+        top = top.next;
+        size--;
+        return ele;
+    }
 
-   public static void pop(){
-       if(isEmpty()){
-           System.out.println("stack is empty");
-       }
-       else {
-           top = top.next;
-           size--;
-       }
-   }
+    public int top(){
+        if(top == null){
+            System.out.println("No elements found");
+            return 0;
+        }
+        return top.data;
+    }
 
-   public static int getSize(){
-       return size;
-   }
-
-
-    public static void main(String[] args) {
-        StackUsingLinkedList st = new StackUsingLinkedList();
-        push(10);
-        push(20);
-        push(30);
-        push(40);
-        push(50);
-        System.out.println(peek());
-        System.out.println(getSize());
-        pop();
-        pop();
-        System.out.println(peek());
-        System.out.println(getSize());
+    public int getSize(){
+        return size;
     }
 }

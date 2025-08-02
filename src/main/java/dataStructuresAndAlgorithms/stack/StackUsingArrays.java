@@ -5,66 +5,48 @@ import java.util.ArrayList;
 
 //implement a stack using array and arrayList
 public class StackUsingArrays {
-//    static int[] st;
-static ArrayList<Integer> st;
-    static int top;
+    int top = -1;
+    int[] stack;
     int size;
 
-   public StackUsingArrays(int size){
-       this.size = size;
-       top = -1;
-//       st = new int[size];
-       st = new ArrayList<>();
-   }
+    public StackUsingArrays(int size){
+        this.size = size;
+        stack = new int[size];
+    }
 
-   public void push(int data){
-       if(top >= size -1){
-           System.out.println("stack overflow");
-           return;
-       }
-       top++;
-//       st[top] = data;
-       st.add(top,data);
+    //O(1)
+    public void push(int value){
 
-   }
+        if(top>=size){
+            System.out.println("Stack is full");
+        }
+        top++;
+        stack[top] = value;
+        System.out.println("Element pushed");
+    }
 
-   public static int peek(){
-       if(top < 0){
-           System.out.println("stack is empty");
-           return 0;
-       }
-//       return st[top];
-       return st.get(top);
-   }
+    //O(1)
+    public int top(){
+        if(top == -1){
+            System.out.println("Stack is empty");
+            return 0;
+        }
+        return stack[top];
+    }
 
-   public static int pop(){
-       if(top < 0){
-           System.out.println("stack is empty");
-           return 0;
-       }
-       top--;
-//       return st[top];
-       return st.remove(top--);
-   }
+    //O(1)
+    public void pop(){
+        if(top == -1){
+            System.out.println("Stack is empty");
+        } else{
+            stack[top] = 0;
+            top--;
+            System.out.println("Element deleted");
+        }
+    }
 
-   public static int getSize(){
-       return Math.max(top+1, 0);
-   }
-
-   public static boolean isEmpty(){
-       return top < 0;
-   }
-
-
-    public static void main(String[] args) {
-        StackUsingArrays st = new StackUsingArrays(5);
-        st.push(1);
-        st.push(2);
-        st.push(3);
-
-        System.out.println(peek());
-        System.out.println(pop());
-        System.out.println(isEmpty());
-
+    //O(1)
+    public int size(){
+        return top+1;
     }
 }

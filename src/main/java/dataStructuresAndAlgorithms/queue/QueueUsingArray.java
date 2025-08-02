@@ -3,97 +3,60 @@ package dataStructuresAndAlgorithms.queue;
 //TC - O(1) FOR ALL BUT SC - O(SIZE) FOR QUEUE ARRAY
 
 public class QueueUsingArray {
-    private final int size;
-    private final int[] queue;
-    private int currSize;
-    private int start, end;
+    int currSize=0;
+    int size;
+    int start = -1;
+    int end = -1;
+    int[] queue;
 
-    public QueueUsingArray(int c) {
-        size = c;
-        queue = new int[c];
-        start = -1;
-        end = -1;
-        currSize = 0;
+    public QueueUsingArray(int size){
+        this.size = size;
+        queue = new int[size];
     }
 
-    public static void main(String[] args) {
-        QueueUsingArray qe = new QueueUsingArray(5);
-
-        qe.enqueue(10);
-        qe.enqueue(20);
-        qe.enqueue(30);
-        qe.enqueue(40);
-        qe.enqueue(50);
-
-        qe.printQueue();
-
-        System.out.println(qe.dequeue());
-        System.out.println(qe.dequeue());
-        System.out.println(qe.dequeue());
-        System.out.println(qe.dequeue());
-        System.out.println(qe.dequeue());
-        System.out.println(qe.dequeue());
-        qe.enqueue(60);
-        qe.enqueue(70);
-        System.out.println(qe.dequeue());
-        System.out.println(qe.dequeue());
-        System.out.println(qe.dequeue());
-
-    }
-
-    public void printQueue() {
-        if (currSize == 0) {
-            System.out.println("Queue is empty");
-            return;
-        }
-        int i = start;
-        for (int count = 0; count < currSize; count++) {
-            System.out.print(queue[i] + " ");
-            i = (i + 1) % size;
-        }
-        System.out.println();
-    }
-
-    public void enqueue(int data) {
-        if (currSize == size) {
+    public void push(int value){
+        if(currSize == size){
             System.out.println("Queue is full");
             return;
         }
-
-        if (currSize == 0) {
+        if(currSize == 0){
             start = 0;
             end = 0;
         } else {
             end = (end + 1) % size;
         }
-
-        queue[end] = data;
+        queue[end] = value;
         currSize++;
     }
 
-    public int dequeue() {
-        if (currSize == 0) {
-            System.out.println("No element in the queue");
-            return -1; // Error value
+    public int pop(){
+        if(currSize == 0){
+            System.out.println("Queue is empty");
+            return -1;
         }
-
-        int ele = queue[start];
-        if (currSize == 1) {
+        int element = queue[start];
+        if(currSize == 1){
             start = -1;
             end = -1;
-        } else {
+        } else{
             start = (start + 1) % size;
         }
 
         currSize--;
-        return ele;
+        return element;
     }
 
-    public int peek() {
-        if (currSize == 0) {
-            System.out.println("no element in the queue");
+    public int top(){
+        if(currSize == 0){
+            System.out.println("Queue is empty");
             return -1;
         }
+
         return queue[start];
     }
+
+    public int getSize(){
+        return currSize;
+    }
+
 }
