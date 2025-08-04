@@ -18,7 +18,7 @@ public class QueueUsingStack {
 
         // Move everything back from st2 to st
         while (!st2.isEmpty()) {
-            st.push(st2.pop()); // ✅ FIXED
+            st.push(st2.pop());
         }
     }
 
